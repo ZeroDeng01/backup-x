@@ -12,7 +12,7 @@ jobs:
   buildx-dockerhub:
     runs-on: ubuntu-latest
     env:
-      DOCKER_REPO: jeessy/backup-x
+      DOCKER_REPO: zerodeng/backup-x
       DOCKER_PLATFORMS: linux/amd64,linux/arm64
     steps:
       - name: Checkout
