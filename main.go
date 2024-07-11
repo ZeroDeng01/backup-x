@@ -97,7 +97,7 @@ func run(firstDelay time.Duration) {
 
 	// 运行
 	go client.DeleteOldBackup()
-	go client.RunLoop()
+	go client.RunLoop(firstDelay)
 
 	err := http.ListenAndServe(*listen, nil)
 
@@ -137,9 +137,6 @@ func getService() service.Service {
 		depends = append(depends, "Requires=network.target",
 			"After=network-online.target")
 	}
-
-	// run as user service
-	options["UserService"] = true
 
 	svcConfig := &service.Config{
 		Name:         "backup-x",
