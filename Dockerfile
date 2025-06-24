@@ -28,14 +28,14 @@ LABEL name=backup-x
 LABEL url=https://github.com/ZeroDeng01/backup-x
 
 RUN apt-get -y update \
-    && apt-get install -y wget curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates
+    && apt-get install -y wget curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates rsync lz4 zstd
 
 # https://www.postgresql.org/download/linux/debian/
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get -y update
 
-RUN apt-get install -y postgresql-client-16 \
+RUN apt-get install -y postgresql-client-17 \
     && apt-get install -y default-mysql-client
 
 # add RCLone to use directly
